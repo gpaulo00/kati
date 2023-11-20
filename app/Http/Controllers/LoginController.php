@@ -5,28 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Student;
+use App\Models\Notification;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LoginController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        return view('login', ['error' => 'Hello']);
+        $notif = Notification::all();
+        return view('login', [
+            'notifications' => $notif,
+        ]);
     }
 
     public function login(LoginRequest $request) {
         $request->session()->regenerate();
- 
-        $output = new ConsoleOutput();
-        $output->writeln("<info>Error message</info>");
         $user = $request->post('username');
         $pass = $request->post('password');
+        $notif = Notification::all();
 
         $student = Student::where('cedula', $user)->first();
         if (!$student) {
             return view('login', [
+                'notifications' => $notif,
                 'error' => 'No se encontró el usuario ',
                 'user' => $user,
             ]);
@@ -34,6 +38,7 @@ class LoginController extends Controller
 
         if(!password_verify($pass, $student->clave)) {
             return view('login', [
+                'notifications' => $notif,
                 'error' => 'Contraseña incorrecta',
                 'user' => $user,
             ]);
@@ -42,6 +47,7 @@ class LoginController extends Controller
         $request->session()->put('auth', true);
         $request->session()->put('auth_user', $student);
         return view('login', [
+            'notifications' => $notif,
             'error' => 'Bienvenido ' . $user,
         ]);
     }
