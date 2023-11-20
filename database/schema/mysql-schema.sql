@@ -67,8 +67,8 @@ CREATE TABLE `students` (
   `cedula` varchar(255) NOT NULL,
   `clave` varchar(255) NOT NULL,
   `extranjero` tinyint(1) NOT NULL DEFAULT 0,
-  `fecha_nacimiento` date NOT NULL,
-  `fecha_inscripcion` date NOT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `fecha_inscripcion` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

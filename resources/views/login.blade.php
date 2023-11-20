@@ -84,7 +84,7 @@
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
-                                        <input required type="text" name="username" class="form-control input_user" placeholder="Usuario">
+                                        <input required type="text" name="username" class="form-control input_user" value="{{ $user ?? '' }}" placeholder="Usuario">
                                     </div>
                                     <div class="input-group mb-2">
                                         <div class="input-group-append">
