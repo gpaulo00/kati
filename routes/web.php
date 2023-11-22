@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/dashboard', function (Session $session) {
+    error_log('Auth' . $session->get('auth'));
+    return view('dashboard');
+});
 
 /*
 Route::get('/dashboard', function () {

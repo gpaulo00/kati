@@ -17,6 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'community_name' => env('COMMUNITY_NAME', 'Complejo Educativo Hermanas Peraza'),
 
     /*
     |--------------------------------------------------------------------------

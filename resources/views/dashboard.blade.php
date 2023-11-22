@@ -1,15 +1,44 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 text-center">
+                Bienvenido {{ Session::get('auth_user')->nombre }} {{ Session::get('auth_user')->apellido }}.
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                <div class="row mt-5">
+                    <div class="col-sm-5">
+                        <table class="table" width="50%">
+                            <tbody>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td>{{ Session::get('auth_user')->nombre }}
+                                        {{ Session::get('auth_user')->apellido }}</td>
+                                </tr>
+                                <tr>
+                                    <th>C.I.</th>
+                                    <td>{{ Session::get('auth_user')->cedula }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de Nacimiento</th>
+                                    <td>{{ Session::get('auth_user')->fecha_nacimiento }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Teléfono</th>
+                                    <td>{{ Session::get('auth_user')->fecha_nacimiento }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Correo</th>
+                                    <td>{{ Session::get('auth_user')->fecha_nacimiento }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <td>{{ Session::get('auth_user')->fecha_nacimiento }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="https://api-private.atlassian.com/users/6b5c1609134a5887d7f3ab1b73557664/avatar">
+                    </div>
                 </div>
             </div>
         </div>
