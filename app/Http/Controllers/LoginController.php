@@ -21,6 +21,12 @@ class LoginController extends Controller
         ]);
     }
 
+    public function logout(Request $request) {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
+    }
+
     public function login(LoginRequest $request) {
         $request->session()->regenerate();
         $user = $request->post('username');
@@ -46,9 +52,6 @@ class LoginController extends Controller
 
         $request->session()->put('auth', true);
         $request->session()->put('auth_user', $student);
-        return view('login', [
-            'notifications' => $notif,
-            'error' => 'Bienvenido ' . $user,
-        ]);
+        return redirect()->route('profile');
     }
 }

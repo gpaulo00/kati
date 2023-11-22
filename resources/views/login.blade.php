@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center form_container">
-                                <form method="POST" action="/login">
+                                <form method="POST" action="{{ route('auth.login') }}">
                                     @csrf
                                     <div class="input-group mb-3">
                                         <div class="input-group-append">

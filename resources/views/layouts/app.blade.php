@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 ms-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Estudiante</a>
+                        <a class="nav-link {{ Route::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Estudiante</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Notificaciones</a>
+                        <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}" href="{{ route('notifications') }}">Notificaciones</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
@@ -36,12 +36,12 @@
                             Constancias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Constancia de Estudios</a></li>
+                            <li><a class="dropdown-item" href="#">Constancia de Inscripción</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -52,11 +52,21 @@
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="btn btn-outline-success ms-2" type="submit">Salir</button>
+                <form method="post" action="{{ route('auth.logout') }}">
+                    @csrf
+                    <button class="btn btn-outline-success ms-2" type="submit">Salir</button>
+                </form>
             </div>
         </div>
     </nav>
-    {{ $slot }}
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-center">
+                {{ $slot }}
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
