@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Authenticatable
 {
@@ -29,4 +29,12 @@ class Student extends Authenticatable
     protected $hidden = [
         'clave',
     ];
+
+    /**
+     * Get the medicalData associated
+     */
+    public function medicalData(): HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
 }
