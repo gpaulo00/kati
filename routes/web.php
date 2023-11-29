@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 Route::get('/profile', [AppController::class, 'profile'])->name('profile');
 Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
+
+Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'index']);
 
 /*
 Route::get('/dashboard', function () {
