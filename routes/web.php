@@ -18,14 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'index'])->name('home');
+Route::middleware('guest')->group(function () {
+    Route::get('/', [LoginController::class, 'index'])->name('home');
+});
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
-Route::get('/profile', [AppController::class, 'profile'])->name('profile');
-Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AppController::class, 'profile'])->name('profile');
+    Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
 
-Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'index']);
+    Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion']);
+    Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios']);
+});
 
 /*
 Route::get('/dashboard', function () {
