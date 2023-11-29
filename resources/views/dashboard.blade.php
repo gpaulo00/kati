@@ -1,11 +1,8 @@
 <x-app-layout>
-
-<!--
     @php
         $user = Session::get('auth_user');
         $medical = $user->medicalData()->first();
     @endphp
-    -->
 
     Bienvenido {{ $user->nombre }} {{ $user->apellido }}.
 
