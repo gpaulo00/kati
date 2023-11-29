@@ -35,6 +35,6 @@ class Student extends Authenticatable
      */
     public function medicalData(): HasOne
     {
-        return $this->hasOne(Student::class);
+        return $this->hasOne(StudentMedicalData::class);
     }
 }
