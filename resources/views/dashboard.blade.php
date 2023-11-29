@@ -7,16 +7,16 @@
     Bienvenido {{ $user->nombre }} {{ $user->apellido }}.
 
     <div class="row mt-5 justify-content-center">
-        <div class="col-md-5" x-data="{ tab: 'personal' }" id="tab_wrapper">
+        <div class="col-md-6" x-data="{ tab: 'personal' }" id="tab_wrapper">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a :class="{ 'nav-link': true, 'active': tab === 'personal' }" @click.prevent="tab = 'personal'" href="#">Datos Personales</a>
                 </li>
                 <li class="nav-item">
-                    <a :class="{ 'nav-link': true, 'active': tab === 'medico' }" @click.prevent="tab = 'medico'" href="#">Datos Médicos</a>
+                    <a :class="{ 'nav-link': true, 'active': tab === 'educacion' }"  @click.prevent="tab = 'educacion'" href="#">Datos Educativos</a>
                 </li>
                 <li class="nav-item">
-                    <a :class="{ 'nav-link': true, 'active': tab === 'otro' }"  @click.prevent="tab = 'otro'" href="#">Link</a>
+                    <a :class="{ 'nav-link': true, 'active': tab === 'medico' }" @click.prevent="tab = 'medico'" href="#">Datos Médicos</a>
                 </li>
             </ul>
 
@@ -51,7 +51,7 @@
                 </tbody>
             </table>
 
-            <!-- info personal -->
+            <!-- info medica -->
             <table class="table" width="50%" x-show="tab === 'medico'">
                 <tbody>
                     <tr>
@@ -69,6 +69,24 @@
                     <tr>
                         <th>Enfermedades</th>
                         <td>{{ $medical->enfermedad ?? '-' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- info educacion -->
+            <table class="table" width="50%" x-show="tab === 'educacion'">
+                <tbody>
+                    <tr>
+                        <th>Tipo Educación</th>
+                        <td>{{ $user->tipo_educacion ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Año Escolar</th>
+                        <td>{{ $user->periodo_escolar ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nivel</th>
+                        <td>{{ $user->nivel_educacion ?? '-' }}</td>
                     </tr>
                 </tbody>
             </table>
