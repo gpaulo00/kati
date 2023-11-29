@@ -19,6 +19,13 @@
     /*border-bottom: 1px solid;*/
 }
 
+.gp-sub2:after {
+    content: "\00a0\00a0";
+}
+.gp-sub2:before {
+    content: "\00a0\00a0";
+}
+
 p.gp-first {
   text-indent: 20px;
   text-align: justify;
@@ -29,27 +36,35 @@ p.gp-first {
 </style>
 </head>
 <body>
+    @php
+        if (isset($id)) {
+            $user = \App\Models\Student::find($id);
+        } else {
+            $user = \App\Models\Student::find(Session::get('auth_user')->id);
+        }
+    @endphp
+
     <h1 class="gp-title">CONSTANCIA DE ESTUDIOS</h1>
-    <br><br>
+    <br><br><br>
     <p class="gp-first">
         Quien suscribe <b style="text-transform: uppercase;">Lcdo. Leonardo Escalona</b>, Director (E) del
         <b style="text-transform: uppercase;">{{ config('app.community_name', 'Laravel') }}</b>,
         ubicada en el Barrio Campo Lindo de la Ciudad de Acarigua Estado Portuguesa, por medio de la presente <b>Hace Constar</b> que el (la) Estudiante
-        <span class="gp-sub">{{ $nombre ?? '{Nombre Completo}'}}</span>
-        titular de la Cédula de Identidad o Cédula Escolar <span class="gp-sub">{{ Session::get('auth_user')->cedula ?? '{Cedula}' }}</span>
-        cursa <span class="gp-sub">{Trayecto}</span>
-        de Educación: <span class="gp-sub">{NivelEducacion}</span>
-        en esta institución durante el Año Escolar: <span class="gp-sub">{Año}</span>
+        <span class="gp-sub">{{ $user->nombre . ' ' . $user->apellido ?? '{Nombre Completo}'}}&nbsp;</span>
+        titular de la Cédula de Identidad o Cédula Escolar <span class="gp-sub">{{ ' ' . $user->cedula . ' ' ?? '{Cedula}' }}</span>
+        cursa <span class="gp-sub gp-sub2">{{ $user->nivel_educacion ?? '{Grado}' }}</span>
+        de Educación: <span class="gp-sub gp-sub2">{{ $user->tipo_educacion ?? '{Educacion}' }}</span>
+        en esta institución durante el Año Escolar: <span class="gp-sub gp-sub2">{{ $user->periodo_escolar ?? '{Año Escolar}' }}</span>
     </p>
 
-    <br><br><br>
+    <br><br><br><br>
 
     <p class="gp-first">
-        Constancia que se expide en Acarigua a los <span class="gp-sub">{{ $fecha->day }}</span> días del mes de
-        <span class="gp-sub">{{ $fecha->monthName }}</span> del <span class="gp-sub">{{ $fecha->year }}</span>.
+        Constancia que se expide en Acarigua a los <span class="gp-sub gp-sub2">{{ $fecha->day }}</span> días del mes de
+        <span class="gp-sub gp-sub2">{{ $fecha->monthName }}</span> del <span class="gp-sub gp-sub2">{{ $fecha->year }}</span>.
     </p>
 
-    <br><br><br>
+    <br><br><br><br>
 
     <p style="text-align: center;">ATENTAMENTE</p>
 

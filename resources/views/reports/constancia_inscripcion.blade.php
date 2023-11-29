@@ -37,16 +37,25 @@ p.gp-first {
 </style>
 </head>
 <body>
+    @php
+        if (isset($id)) {
+            $user = \App\Models\Student::find($id);
+        } else {
+            $user = \App\Models\Student::find(Session::get('auth_user')->id);
+        }
+    @endphp
+
     <h1 class="gp-title">CONSTANCIA DE INSCRIPCIÓN</h1>
     <br><br>
     <p class="gp-first">
         Quien suscribe Lcdo. Leonardo Escalona, Director (E) del <b>{{ config('app.community_name', 'Laravel') }}</b>,
         ubicada en la calle 30, entre Avenidas 21 y Rómulo Gallegos del Barrio Campo Lindo de la Ciudad de Acarigua
         Edo Portuguesa, por medio de la presente <b>HACE CONSTAR</b> que el (la) Estudiante
-        <span class="gp-sub">{{ Session::get('auth_user')->nombre ?? '{Nombre}'}} {{ Session::get('auth_user')->apellido ?? '{Apellido}' }}</span>
-        titular de la Cédula de Identidad Nº <span class="gp-sub">{{ Session::get('auth_user')->cedula ?? '{Cedula}' }}</span>
-        ha sido inscrito (a) en esta institucion, para cursar el <span class="gp-sub">{Trayecto}</span> de Educación:
-        <span class="gp-sub">{NivelEducacion}</span> durante el Año Escolar: <span class="gp-sub">{Año}</span>
+        <span class="gp-sub">{{ $user->nombre . ' ' . $user->apellido ?? '{Nombre Completo}'}}&nbsp;</span>
+        titular de la Cédula de Identidad Nº <span class="gp-sub">{{ ' ' . $user->cedula . ' ' ?? '{Cedula}' }}</span>
+        ha sido inscrito (a) en esta institucion, para cursar el <span class="gp-sub">{{ $user->nivel_educacion ?? '{Grado}' }}</span> de Educación:
+        <span class="gp-sub">{{ $user->tipo_educacion ?? '{Educacion}' }}</span>
+        durante el Año Escolar: <span class="gp-sub">{{ $user->periodo_escolar ?? '{Año Escolar}' }}</span>
     </p>
 
     <br><br><br>

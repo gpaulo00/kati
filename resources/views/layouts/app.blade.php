@@ -37,8 +37,8 @@
                             Constancias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Constancia de Estudios</a></li>
-                            <li><a class="dropdown-item" href="#">Constancia de Inscripción</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="{{ route('reports.estudios') }}">Constancia de Estudios</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="{{ route('reports.inscripcion') }}">Constancia de Inscripción</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
