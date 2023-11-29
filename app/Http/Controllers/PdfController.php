@@ -9,7 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PdfController extends Controller
 {
 
-    public function index()
+    public function constancia_inscripcion()
     {
         Carbon::setLocale('es');
         $date = Carbon::now();
@@ -18,5 +18,16 @@ class PdfController extends Controller
         ]);
         //->month;
         return $pdf->stream("constancia_inscripcion.pdf", array("Attachment" => false));
+    }
+
+    public function constancia_estudios()
+    {
+        Carbon::setLocale('es');
+        $date = Carbon::now();
+        $pdf = Pdf::loadView('reports/constancia_estudios', [
+            'fecha' => $date,
+        ]);
+        //->month;
+        return $pdf->stream("constancia_estudios.pdf", array("Attachment" => false));
     }
 }
