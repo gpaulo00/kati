@@ -52,7 +52,7 @@
             </table>
 
             <!-- info medica -->
-            <table class="table" width="50%" x-show="tab === 'medico'">
+            <table class="table" width="50%" x-show="tab === 'medico'" x-cloak>
                 <tbody>
                     <tr>
                         <th>Tipo de Sangre</th>
@@ -74,7 +74,7 @@
             </table>
 
             <!-- info educacion -->
-            <table class="table" width="50%" x-show="tab === 'educacion'">
+            <table class="table" width="50%" x-show="tab === 'educacion'" x-cloak>
                 <tbody>
                     <tr>
                         <th>Tipo Educación</th>
@@ -87,6 +87,10 @@
                     <tr>
                         <th>Nivel</th>
                         <td>{{ $user->nivel_educacion ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Inscripción</th>
+                        <td>{{ $user->fecha_inscripcion ?? '-' }}</td>
                     </tr>
                 </tbody>
             </table>
