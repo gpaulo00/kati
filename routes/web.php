@@ -27,6 +27,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AppController::class, 'profile'])->name('profile');
     Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
+    Route::get('/password', [AppController::class, 'password'])->name('password');
+    Route::post('/update_password', [AppController::class, 'change_password'])->name('password.change');
+
 
     Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion'])->name('reports.inscripcion');
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');

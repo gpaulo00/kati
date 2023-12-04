@@ -24,4 +24,30 @@ class AppController extends Controller
             'notifications' => $notif,
         ]);
     }
+
+    public function password(Request $request)
+    {
+        $notif = Notification::all();
+        return view('password', [
+        ]);
+    }
+
+    public function change_password(Request $request)
+    {
+        $pess = $request->post('confirm');
+        $pass = $request->post('password');
+        if ($pass != $pess) {
+            return view('password', [
+                'error' => 'Las contraseñas no coinciden'
+            ]);
+        }
+
+        $user = Student::find($request->session()->get('auth_user')->id);
+        $user->clave = password_hash($pass, PASSWORD_BCRYPT);
+        $user->save();
+
+        return view('password', [
+            'message' => 'Se realizo el cambio exitosamente!',
+        ]);
+    }
 }

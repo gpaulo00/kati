@@ -91,7 +91,7 @@
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                                         </div>
-                                        <input required type="password" name="password" class="form-control input_pass" placeholder="Contraseña">
+                                        <input required type="password" name="password" minlength="8" class="form-control input_pass" placeholder="Contraseña">
                                     </div>
                                     {{--
                                     <div class="form-group">
