@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     @if (isset($message))
-                    <div class="mt-4 alert alert-sucess" role="alert">
+                    <div class="mt-4 alert alert-success" role="alert">
                         {{ $message }}
                     </div>
                     @endif
