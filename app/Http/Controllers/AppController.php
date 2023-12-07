@@ -46,26 +46,24 @@ class AppController extends Controller
     public function password(Request $request)
     {
         $notif = Notification::all();
-        return view('password', [
-        ]);
+        return view('password');
     }
 
     public function change_password(Request $request)
     {
         $pess = $request->post('confirm');
         $pass = $request->post('password');
+        if (!isset($pass) || empty($pass) || !is_string($pass) || strlen((string)$pass) < 8) {
+            return back()->with('message', 'La contraseña es inválida')->with('alert-class', 'alert-danger');
+        }
         if ($pass != $pess) {
-            return view('password', [
-                'error' => 'Las contraseñas no coinciden'
-            ]);
+            return back()->with('message', 'Las contraseñas no coinciden')->with('alert-class', 'alert-danger');
         }
 
         $user = Student::find($request->session()->get('auth_user')->id);
         $user->clave = password_hash($pass, PASSWORD_BCRYPT);
         $user->save();
 
-        return view('password', [
-            'message' => 'Se realizo el cambio exitosamente!',
-        ]);
+        return back()->with('message', 'Se realizo el cambio exitosamente!')->with('alert-class', 'alert-success');
     }
 }

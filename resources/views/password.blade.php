@@ -51,15 +51,12 @@
                             <div class="invalid-feedback" x-text="errors.nueva"></div>
                         </div>
                     </div>
-                    @if (isset($message))
-                    <div class="mt-4 alert alert-success" role="alert">
-                        {{ $message }}
-                    </div>
-                    @endif
-                    @if (isset($error))
-                    <div class="mt-4 alert alert-danger" role="alert">
-                        {{ $error }}
-                    </div>
+
+                    @if (Session::has('message'))
+                        <div class="mt-4 alert alert-success alert-dismissible {{ Session::get('alert-class', 'alert-info') }}" role="alert">
+                            <div>{{ Session::get('message') }}</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                        </div>
                     @endif
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Procesar</button>

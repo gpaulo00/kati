@@ -132,7 +132,7 @@
 
     <script>
         function creditCardMask(input) {
-            return '9'.repeat(input.length + 1)
+            return '9'.repeat(input.length < 10 ? input.length + 1 : 10)
         }
     </script>
 </body>

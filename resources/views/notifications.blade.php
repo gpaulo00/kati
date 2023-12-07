@@ -3,8 +3,9 @@
         <div x-data="{ item: {} }">
             @if (Session::has('message'))
                 <div class="row justify-content-center">
-                    <div class="mt-4 mb-3 col-sm-5 alert {{ Session::get('alert-class', 'alert-info') }}" role="alert">
-                        {{ Session::get('message') }}
+                    <div class="mt-4 mb-3 col-sm-5 alert alert-dismissible {{ Session::get('alert-class', 'alert-info') }}" role="alert">
+                        <div>{{ Session::get('message') }}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                     </div>
                 </div>
             @endif
