@@ -17,6 +17,7 @@ class AppController extends Controller
         return view('dashboard');
     }
 
+    // notifications
     public function notifications(Request $request)
     {
         $notif = Notification::all();
@@ -24,7 +25,14 @@ class AppController extends Controller
             'notifications' => $notif,
         ]);
     }
+    public function notif_edit(Request $request, Notification $notif)
+    {
+        $input = $request->all();
+        $notif->fill($input)->save();
+        return back()->with('message', 'Se actualizó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
 
+    // passwords
     public function password(Request $request)
     {
         $notif = Notification::all();

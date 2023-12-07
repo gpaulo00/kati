@@ -17,7 +17,7 @@
                                     'is-valid': processed && !errors.antigua,
                                     'is-invalid': processed && errors.antigua,
                                 }">
-                                <input type="text" class="form-control"
+                                <input type="password" class="form-control"
                                     name="password"
                                     :class="{
                                         'form-control': true,
@@ -38,7 +38,7 @@
                                     'col-sm-12': true,
                                     'is-invalid': processed && errors.nueva,
                                 }">
-                                <input type="text" x-ref="nueva" class="form-control"
+                                <input type="password" x-ref="nueva" class="form-control"
                                     name="confirm"
                                     :class="{
                                         'form-control': true,
