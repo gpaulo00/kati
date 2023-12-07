@@ -2,11 +2,11 @@
     @if (Session::get('auth_user')->superuser)
         <div x-data="{ item: {} }">
             @if (Session::has('message'))
-            <div class="row justify-content-center">
-                <div class="mt-4 mb-3 col-sm-5 alert {{ Session::get('alert-class', 'alert-info') }}" role="alert">
-                    {{ Session::get('message') }}
+                <div class="row justify-content-center">
+                    <div class="mt-4 mb-3 col-sm-5 alert {{ Session::get('alert-class', 'alert-info') }}" role="alert">
+                        {{ Session::get('message') }}
+                    </div>
                 </div>
-            </div>
             @endif
 
             <table class="table" width="50%">
@@ -27,7 +27,9 @@
                             <td>{{ $not->creado_por }}</td>
                             <td>{{ $not->created_at }}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                <button @click='item = @json($not)' type="button"
+                                    class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i
+                                        class="fas fa-trash"></i></button>
                                 <button @click='item = @json($not)' type="button"
                                     class="btn btn-sm btn-success" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
@@ -37,21 +39,31 @@
                 </tbody>
             </table>
 
+            <div class="row justify-content-end">
+                <button type="button" @click='item = {}' class="col-sm-2 btn btn-sm btn-success" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    Agregar &nbsp;
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
             <!-- edit dialog -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <form class="modal-content" method="post"
-                        :action="`{{ route('notifications.edit', '') }}/${item.id}`"
-                        action="{{ route('notifications.edit', '1') }}">
+                        :action="item.id ? `{{ route('notifications.edit', '') }}/${item.id}` : `{{ route('notifications.create') }}`">
                         @csrf
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Notificación</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                <span x-text="item.id ? 'Editar' : 'Crear'"></span>
+                                Notificación
+                            </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" name="id" x-model="item.id">
+                            <input type="hidden" name="creado_por" value="{{ Session::get('auth_user')->nombreCompleto() }}">
                             <div class="mb-3">
                                 <label for="notTitulo" class="form-label">Título</label>
                                 <input x-model="item.titulo" type="text" name="titulo" class="form-control"
@@ -65,7 +77,33 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Editar</button>
+                            <button type="submit" class="btn btn-primary" x-text="item.id ? 'Editar' : 'Crear'"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- delete dialog -->
+            <div class="modal fade" id="deleteDialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="deleteDialogLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form class="modal-content" method="post"
+                        :action="`{{ route('notifications.delete', '') }}/${item.id}`">
+                        @csrf
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="deleteDialogLabel">Eliminar Notificación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                ¿Estás seguro de eliminar la notificación <span class="fw-bolder"
+                                    x-text="item.titulo"></span>"?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Eliminar</button>
                         </div>
                     </form>
                 </div>

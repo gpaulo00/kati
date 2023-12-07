@@ -39,4 +39,9 @@ class Student extends Authenticatable
     {
         return $this->hasOne(StudentMedicalData::class);
     }
+
+    public function nombreCompleto()
+    {
+        return $this->nombre . ' ' . $this->apellido;
+    }
 }

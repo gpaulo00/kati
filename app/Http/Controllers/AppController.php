@@ -31,6 +31,16 @@ class AppController extends Controller
         $notif->fill($input)->save();
         return back()->with('message', 'Se actualizó el registro con éxito!')->with('alert-class', 'alert-success');
     }
+    public function notif_delete(Notification $notif)
+    {
+        $notif->delete();
+        return back()->with('message', 'Se eliminó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
+    public function notif_create(Request $request)
+    {
+        Notification::create($request->all());
+        return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
 
     // passwords
     public function password(Request $request)

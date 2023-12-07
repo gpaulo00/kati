@@ -27,6 +27,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AppController::class, 'profile'])->name('profile');
     Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
+    Route::post('/notifications/edit/{notif}', [AppController::class, 'notif_edit'])->name('notifications.edit');
+    Route::post('/notifications/delete/{notif}', [AppController::class, 'notif_delete'])->name('notifications.delete');
+    Route::post('/notifications/create', [AppController::class, 'notif_create'])->name('notifications.create');
     Route::get('/password', [AppController::class, 'password'])->name('password');
     Route::post('/update_password', [AppController::class, 'change_password'])->name('password.change');
 
