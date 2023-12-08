@@ -1,4 +1,5 @@
 <x-app-layout>
+    <h4 class="mt-3 mb-4">Información General</h4>
     @if (Session::get('auth_user')->superuser)
         <div x-data="{ item: {} }">
             @if (Session::has('message'))
@@ -10,7 +11,7 @@
                 </div>
             @endif
 
-            <table class="table" width="50%">
+            <table class="table table-striped table-bordered" width="50%">
                 <tbody>
                     <tr>
                         <th>ID</th>
@@ -98,7 +99,7 @@
                         </div>
                         <div class="modal-body">
                             <p>
-                                ¿Estás seguro de eliminar la notificación <span class="fw-bolder"
+                                ¿Estás seguro de eliminar la notificación "<span class="fw-bolder"
                                     x-text="item.titulo"></span>"?
                             </p>
                         </div>
@@ -111,7 +112,6 @@
             </div>
         </div>
     @else
-        <h4 class="mt-4">Información General</h4>
         <div class="accordion" id="accordionExample">
             @foreach ($notifications as $not)
                 <div class="accordion-item">

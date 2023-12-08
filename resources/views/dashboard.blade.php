@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <th>C.I.</th>
-                        <td>{{ $user->cedula }}</td>
+                        <td>{{ $user->cedulaCompleto() }}</td>
                     </tr>
                     <tr>
                         <th>Fecha de Nacimiento</th>
