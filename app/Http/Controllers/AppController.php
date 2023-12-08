@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Notification;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Support\Facades\Hash;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 class AppController extends Controller
 {
@@ -40,6 +37,49 @@ class AppController extends Controller
     {
         Notification::create($request->all());
         return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
+
+    // estudiantes
+    public function student_create(Request $request)
+    {
+        $user = new Student();
+        $user->fill($request->all());
+
+        if (!isset($user->clave) || empty($user->clave)) {
+            $user->clave = str_pad($user->cedula, 8, "0", STR_PAD_LEFT);
+        }
+        $user->clave = password_hash($user->clave, PASSWORD_BCRYPT);
+        $user->toUpperCase();
+        $user->save();
+        return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
+    public function student_edit(Request $request, Student $user)
+    {
+        $input = $request->all();
+        $user->fill($input)->save();
+        return back()->with('message', 'Se actualizó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
+    public function student_table(Request $request)
+    {
+        $search = $request->query("search");
+
+        // query
+        $data = Student::query();
+        if (isset($search)) {
+            $data->where('nombre', 'LIKE', '%' . $search . '%')
+                ->orWhere('apellido', 'LIKE', '%' . $search . '%')
+                ->orWhere('cedula', 'LIKE', '%' . $search . '%')
+                ->orWhere('correo', 'LIKE', '%' . $search . '%');
+        }
+
+        // vista
+        return view('forms/tabla_estudiantes', [
+            'users' => $data->paginate(5)->appends('search', $request->search),
+        ]);
+    }
+    public function student_form_edit(Request $request, Student $user)
+    {
+        return view('forms/estudiante');
     }
 
     // passwords

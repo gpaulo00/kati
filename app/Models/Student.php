@@ -21,6 +21,16 @@ class Student extends Authenticatable
         'nombre',
         'apellido',
         'clave',
+        'fecha_nacimiento',
+        'fecha_inscripcion',
+        'periodo_escolar',
+        'nivel_educacion',
+        'telefono',
+        'correo',
+        'direccion',
+        'extranjero',
+        'cedula',
+        'tipo_educacion',
     ];
 
     /**
@@ -43,5 +53,16 @@ class Student extends Authenticatable
     public function nombreCompleto()
     {
         return $this->nombre . ' ' . $this->apellido;
+    }
+
+    public function cedulaCompleto()
+    {
+        return ($this->extranjero ? 'E' : 'V') . $this->cedula;
+    }
+
+    public function toUpperCase()
+    {
+        $this->nombre = strtoupper($this->nombre);
+        $this->apellido = strtoupper($this->apellido);
     }
 }

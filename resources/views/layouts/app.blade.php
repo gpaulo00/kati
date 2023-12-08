@@ -13,14 +13,15 @@
     <link href="{{ asset('bootstrap5.min.css') }}" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('fontawesome-free-5.15.4-web/css/all.css') }}" crossorigin="anonymous">
+
     <!-- Alpine Plugins -->
     <script defer src="{{ asset('alpine-mask.min.js') }}"></script>
     <!-- Alpine Core -->
     <script defer src="{{ asset('alpine.min.js') }}"></script>
     <style type="text/css">
-    [x-cloak] {
-        display: none !important;
-    }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -34,14 +35,29 @@
 
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 ms-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Estudiante</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('profile') ? 'active' : '' }}" href="#"
+                            id="navbarProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Perfil
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarProfile">
+                            <li><a class="dropdown-item {{ Route::is('profile') ? 'active' : '' }}"
+                                    href="{{ route('profile') }}">Información</a></li>
+                            <li><a class="dropdown-item {{ Route::is('password') ? 'active' : '' }}"
+                                    href="{{ route('password') }}">Cambiar Clave</a></li>
+                        </ul>
                     </li>
+
+                    @if (Session::get('auth_user')->superuser)
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}" href="{{ route('notifications') }}">Notificaciones</a>
+                        <a class="nav-link {{ Route::is('students') ? 'active' : '' }}"
+                            href="{{ route('students') }}">Estudiantes</a>
                     </li>
+                    @endif
+
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('password') ? 'active' : '' }}" href="{{ route('password') }}">Cambiar Clave</a>
+                        <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}"
+                            href="{{ route('notifications') }}">Anuncios</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
@@ -49,12 +65,14 @@
                             Constancias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" target="_blank" href="{{ route('reports.estudios') }}">Constancia de Estudios</a></li>
-                            <li><a class="dropdown-item" target="_blank" href="{{ route('reports.inscripcion') }}">Constancia de Inscripción</a></li>
-                            <li>
+                            <li><a class="dropdown-item" target="_blank"
+                                    href="{{ route('reports.estudios') }}">Constancia de Estudios</a></li>
+                            <li><a class="dropdown-item" target="_blank"
+                                    href="{{ route('reports.inscripcion') }}">Constancia de Inscripción</a></li>
+                            {{-- <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li>
+                            <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li> --}}
                         </ul>
                     </li>
                 </ul>

@@ -4,7 +4,9 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PdfController;
+use App\Models\Student;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,12 +26,22 @@ Route::middleware('guest')->group(function () {
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
+Route::get('/edituser', function () {
+    return view('forms/estudiante');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AppController::class, 'profile'])->name('profile');
+    Route::post('/student/edit/{user}', [AppController::class, 'student_edit'])->name('student.edit');
+    Route::post('/student/create', [AppController::class, 'student_create'])->name('student.create');
+    Route::get('/students', [AppController::class, 'student_table'])->name('students');
+    Route::get('/students/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
+
     Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
     Route::post('/notifications/edit/{notif}', [AppController::class, 'notif_edit'])->name('notifications.edit');
     Route::post('/notifications/delete/{notif}', [AppController::class, 'notif_delete'])->name('notifications.delete');
     Route::post('/notifications/create', [AppController::class, 'notif_create'])->name('notifications.create');
+
     Route::get('/password', [AppController::class, 'password'])->name('password');
     Route::post('/update_password', [AppController::class, 'change_password'])->name('password.change');
 
