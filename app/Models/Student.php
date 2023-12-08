@@ -23,7 +23,6 @@ class Student extends Authenticatable
         'clave',
         'fecha_nacimiento',
         'fecha_inscripcion',
-        'periodo_escolar',
         'nivel_educacion',
         'telefono',
         'correo',

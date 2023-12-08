@@ -81,10 +81,6 @@
                         <td>{{ $user->tipo_educacion ?? '-' }}</td>
                     </tr>
                     <tr>
-                        <th>Año Escolar</th>
-                        <td>{{ $user->periodo_escolar ?? '-' }}</td>
-                    </tr>
-                    <tr>
                         <th>Nivel</th>
                         <td>{{ $user->nivel_educacion ?? '-' }}</td>
                     </tr>

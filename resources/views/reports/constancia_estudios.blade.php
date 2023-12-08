@@ -54,7 +54,7 @@ p.gp-first {
         titular de la Cédula de Identidad o Cédula Escolar <span class="gp-sub">{{ ' ' . $user->cedula . ' ' ?? '{Cedula}' }}</span>
         cursa <span class="gp-sub gp-sub2">{{ $user->nivel_educacion ?? '{Grado}' }}</span>
         de Educación: <span class="gp-sub gp-sub2">{{ $user->tipo_educacion ?? '{Educacion}' }}</span>
-        en esta institución durante el Año Escolar: <span class="gp-sub gp-sub2">{{ $user->periodo_escolar ?? '{Año Escolar}' }}</span>
+        en esta institución durante el Año Escolar: <span class="gp-sub gp-sub2">{{ $fecha->year }}-{{ $fecha->year + 1 }}</span>
     </p>
 
     <br><br><br><br>
