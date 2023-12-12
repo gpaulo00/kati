@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Notification;
+use Illuminate\Database\Eloquent\Builder;
 
 class AppController extends Controller
 {
@@ -64,12 +65,18 @@ class AppController extends Controller
         $search = $request->query("search");
 
         // query
-        $data = Student::query();
+        $data = Student::query()->where(function (Builder $query) {
+            $query->where('superuser', null)->orWhere('superuser', false);
+        });
         if (isset($search)) {
-            $data->where('nombre', 'LIKE', '%' . $search . '%')
-                ->orWhere('apellido', 'LIKE', '%' . $search . '%')
-                ->orWhere('cedula', 'LIKE', '%' . $search . '%')
-                ->orWhere('correo', 'LIKE', '%' . $search . '%');
+            $data->where(function (Builder $query) use ($search) {
+                $query->where('nombre', 'LIKE', '%' . $search . '%')
+                    ->orWhere('apellido', 'LIKE', '%' . $search . '%')
+                    ->orWhere('cedula', 'LIKE', '%' . $search . '%');
+            });
+        }
+        if ($request->query('nivel_educacion') != null) {
+            $data->where('nivel_educacion', $request->query("nivel_educacion"));
         }
 
         // vista
@@ -77,9 +84,11 @@ class AppController extends Controller
             'users' => $data->paginate(5)->appends('search', $request->search),
         ]);
     }
-    public function student_form_edit(Request $request, Student $user)
+    public function student_form_edit(Student $user)
     {
-        return view('forms/estudiante');
+        return view('forms/estudiante', [
+            'user' => $user,
+        ]);
     }
 
     // passwords

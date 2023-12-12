@@ -38,8 +38,8 @@ p.gp-first {
 </head>
 <body>
     @php
-        if (isset($id)) {
-            $user = \App\Models\Student::find($id);
+        if (\Request::get('id')) {
+            $user = \App\Models\Student::find(\Request::get('id'));
         } else {
             $user = \App\Models\Student::find(Session::get('auth_user')->id);
         }

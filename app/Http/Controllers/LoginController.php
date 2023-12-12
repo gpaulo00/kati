@@ -37,7 +37,7 @@ class LoginController extends Controller
         if (!$student) {
             return view('login', [
                 'notifications' => $notif,
-                'error' => 'No se encontró el estudiante',
+                'error' => 'No se encontró el usuario',
                 'user' => $user,
             ]);
         }

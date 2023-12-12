@@ -8,6 +8,19 @@
                         value="{{ Request::query('search') }}">
                 </div>
             </div>
+            <div class="col-sm-3">
+                <select class="form-select" name="nivel_educacion">
+                    <option {{ Request::query('nivel_educacion') != null ? '' : 'selected' }} value=''>Nivel
+                        Educativo</option>
+                    @foreach (['GRADO', 'NIVEL'] as $grado)
+                        @for ($i = 1; $i <= ($grado == 'NIVEL' ? 3 : 6); $i++)
+                            <option {{ Request::query('nivel_educacion') == $i . 'º ' . $grado ? 'selected' : '' }}
+                                value="{{ $i }}º {{ $grado }}">{{ $i }}º
+                                {{ $grado }}</option>
+                        @endfor
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary col-sm-2">
                 Buscar &nbsp;
                 <i class="fas fa-search"></i>
@@ -35,7 +48,16 @@
                         <td>{{ $user->telefono }}</td>
                         <td>{{ $user->nivel_educacion }}</td>
                         <td>
-                            <a role="button" href="{{ route('students.form.edit', $user->id) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                            <a role="button" href="{{ route('students.form.edit', $user->id) }}"
+                                class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top"
+                                title="Editar"><i class="fas fa-edit"></i></a>
+
+                            <a role="button" href="{{ route('reports.inscripcion', ['id' => $user->id]) }}"
+                                target="_blank" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
+                                title="Constancia de Inscripción"><i class="fas fa-file-pdf"></i></a>
+                            <a role="button" href="{{ route('reports.estudios', ['id' => $user->id]) }}"
+                                target="_blank" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
+                                title="Constancia de Estudios"><i class="fas fa-file-pdf"></i></a>
                         </td>
                     </tr>
                 @endforeach

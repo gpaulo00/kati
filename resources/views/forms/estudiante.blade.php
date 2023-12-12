@@ -12,7 +12,7 @@
         @endif
 
         <form x-data="estudiante" x-ref="myform" @submit="validate" method="post"
-            action="{{ route('student.create') }}" :class="{ 'row': true, 'g-3': true, 'mt-3': true }" novalidate>
+            action="{{ isset($user) ? route('student.edit', $user->id) : route('student.create') }}" :class="{ 'row': true, 'g-3': true, 'mt-3': true }" novalidate>
             @csrf
             <h5 class="text-start">Datos Personales</h5>
             <div class="col-md-3">
@@ -125,31 +125,10 @@
             <div class="col-md-3">
                 <div class="input-group has-validation">
                     <div class="form-floating col-sm-12">
-                        <input x-mask="(9999) 9999999" name="telefono" type="text" class="form-control"
+                        <input x-mask="(9999) 9999999" value="{{ $user->telefono ?? '' }}" name="telefono" type="text" class="form-control"
                             :class="{ 'form-control': true, 'is-valid': processed }" id="st_telefono">
                         <label for="st_telefono">Teléfono</label>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="input-group has-validation">
-                    <div class="form-floating col-sm-12"
-                        :class="{
-                            'form-floating': true,
-                            'col-sm-12': true,
-                            'is-invalid': processed && errors.correo,
-                        }">
-                        <input type="text" class="form-control" name="correo"
-                            :class="{
-                                'form-control': true,
-                                'is-valid': processed && !errors.correo,
-                                'is-invalid': processed && errors.correo,
-                            }"
-                            id="st_correo" x-model="correo">
-                        <label for="st_correo" class="form-label">Correo</label>
-                    </div>
-                    <div class="invalid-feedback" x-text="errors.correo"></div>
                 </div>
             </div>
 
@@ -178,7 +157,7 @@
                 <div class="input-group has-validation">
                     <div class="form-floating col-sm-12">
                         <textarea :class="{ 'form-control': true, 'is-valid': processed }" class="form-control" name="direccion"
-                            id="st_dirrecion" rows="5"></textarea>
+                            id="st_dirrecion" rows="5">{{ $user->direccion ?? '' }}</textarea>
                         <label for="st_dirrecion">Dirección</label>
                     </div>
                 </div>
@@ -246,28 +225,8 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="input-group has-validation">
-                    <div class="form-floating col-sm-12"
-                        :class="{
-                            'form-floating': true,
-                            'col-sm-12': true,
-                            'is-invalid': processed && errors.periodo_escolar,
-                        }">
-                        <input x-mask="9999-9999" name="periodo_escolar" type="text" x-model="periodo_escolar"
-                            class="form-control" id="st_periodo_escolar" placeholder="20XX-20XY" required
-                            :class="{
-                                'form-control': true,
-                                'is-valid': processed && !errors.periodo_escolar,
-                                'is-invalid': processed && errors.periodo_escolar,
-                            }">
-                        <label for="st_periodo_escolar">Periodo Escolar</label>
-                    </div>
-                    <div class="invalid-feedback" x-text="errors.periodo_escolar"></div>
-                </div>
-            </div>
-
             <div>
+                <a role="button" href="{{ route('students') }}" class="btn btn-secondary">Volver</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>
@@ -286,18 +245,16 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('estudiante', () => ({
                 errors: {},
-                nacionalidad: 'V',
-                correo: null,
-                cedula: null,
-                educacion: 'PRIMARIA',
-                apellido: null,
-                fecha_nacimiento: null,
-                periodo_escolar: null,
-                fecha_inscripcion: null,
-                nombre: null,
+                nacionalidad: '{{ isset($user) && $user->extranjero ? 'E' : 'V' }}',
+                correo: @json($user->correo ?? null),
+                nombre: @json($user->nombre ?? null),
+                apellido: @json($user->apellido ?? null),
+                cedula: @json($user->cedula ?? null),
+                fecha_nacimiento: @json($user->fecha_nacimiento ?? null),
+                educacion: @json($user->tipo_educacion ?? 'PRIMARIA'),
+                nivel: @json(isset($user) && !is_null($user->nivel_educacion) ? (int)$user->nivel_educacion : 1),
+                fecha_inscripcion: @json($user->fecha_inscripcion ?? null),
                 processed: false,
-
-                nivel: 1,
 
                 validate(e) {
                     this.errors = {};
@@ -314,9 +271,6 @@
                     }
                     if (!this.fecha_nacimiento) {
                         this.errors.fecha_nacimiento = 'Este campo es obligatorio';
-                    }
-                    if (!this.periodo_escolar) {
-                        this.errors.periodo_escolar = 'Este campo es obligatorio';
                     }
                     if (!this.fecha_inscripcion) {
                         this.errors.fecha_inscripcion = 'Este campo es obligatorio';

@@ -59,6 +59,8 @@
                         <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}"
                             href="{{ route('notifications') }}">Anuncios</a>
                     </li>
+
+                    @if (!Session::get('auth_user')->superuser)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,6 +77,22 @@
                             <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li> --}}
                         </ul>
                     </li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Información
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="#">Mision</a></li>
+                            <li><a class="dropdown-item" href="#">Visión</a></li>
+                            {{-- <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li> --}}
+                        </ul>
+                    </li>
+                    @endif
                 </ul>
             </div>
 
