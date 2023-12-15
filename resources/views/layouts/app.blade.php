@@ -41,8 +41,10 @@
                             Perfil
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarProfile">
+                            @if (!Session::get('auth_user')->superuser)
                             <li><a class="dropdown-item {{ Route::is('profile') ? 'active' : '' }}"
                                     href="{{ route('profile') }}">Información</a></li>
+                            @endif
                             <li><a class="dropdown-item {{ Route::is('password') ? 'active' : '' }}"
                                     href="{{ route('password') }}">Cambiar Clave</a></li>
                         </ul>
@@ -84,12 +86,8 @@
                             Información
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Mision</a></li>
-                            <li><a class="dropdown-item" href="#">Visión</a></li>
-                            {{-- <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Constancia de Egreso</a></li> --}}
+                            <li><a class="dropdown-item {{ Route::is('mision') ? 'active' : '' }}" href="{{ route('mision') }}">Mision</a></li>
+                            <li><a class="dropdown-item {{ Route::is('vision') ? 'active' : '' }}" href="{{ route('vision') }}">Visión</a></li>
                         </ul>
                     </li>
                     @endif

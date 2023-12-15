@@ -26,10 +26,6 @@ Route::middleware('guest')->group(function () {
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
-Route::get('/edituser', function () {
-    return view('forms/estudiante');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AppController::class, 'profile'])->name('profile');
     Route::post('/student/edit/{user}', [AppController::class, 'student_edit'])->name('student.edit');
@@ -45,6 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/password', [AppController::class, 'password'])->name('password');
     Route::post('/update_password', [AppController::class, 'change_password'])->name('password.change');
 
+    Route::get('/mision', function () {
+        return view('mision');
+    })->name('mision');
+    Route::get('/vision', function () {
+        return view('vision');
+    })->name('vision');
 
     Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion'])->name('reports.inscripcion');
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');

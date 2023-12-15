@@ -52,6 +52,6 @@ class LoginController extends Controller
 
         $request->session()->put('auth', true);
         $request->session()->put('auth_user', $student);
-        return redirect()->route('profile');
+        return redirect()->route('students');
     }
 }

@@ -7,13 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap4.min.css') }}" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('fontawesome-free-5.15.4-web/css/all.css') }}" crossorigin="anonymous">
-    <script src="{{ asset('jquery.slim.min.js') }}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="{{ asset('bootstrap4.bundle.min.js') }}" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script defer src="{{ asset('alpine-mask.min.js') }}"></script>
-    <script defer src="{{ asset('alpine.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('login.css') }}">
+    <link rel="stylesheet" href="{{ url('bootstrap4.min.css') }}" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url('fontawesome-free-5.15.4-web/css/all.css') }}" crossorigin="anonymous">
+    <script src="{{ url('jquery.slim.min.js') }}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{{ url('bootstrap4.bundle.min.js') }}" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script defer src="{{ url('alpine-mask.min.js') }}"></script>
+    <script defer src="{{ url('alpine.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url('login.css') }}">
     <style type="text/css">
     .gp-card {
         width: 100%;
@@ -68,7 +68,7 @@
                         <div class="user_card">
                             <div class="d-flex justify-content-center">
                                 <div class="brand_logo_container">
-                                    <img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
+                                    <img src="{{ asset('default-avatar.png') }}" class="brand_logo" alt="Logo">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center form_container">
