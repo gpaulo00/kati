@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Notification;
+use App\Models\Worker;
 use Illuminate\Database\Eloquent\Builder;
 
 class AppController extends Controller
@@ -89,6 +90,48 @@ class AppController extends Controller
         return view('forms/estudiante', [
             'user' => $user,
         ]);
+    }
+
+    // workens
+    public function worker_table(Request $request)
+    {
+        $search = $request->query("search");
+
+        // query
+        $data = Worker::query();
+        if (isset($search)) {
+            $data->where(function (Builder $query) use ($search) {
+                $query->where('nombre', 'LIKE', '%' . $search . '%')
+                    ->orWhere('apellido', 'LIKE', '%' . $search . '%')
+                    ->orWhere('cedula', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        // vista
+        return view('forms/tabla_trabajadores', [
+            'users' => $data->paginate(5)->appends('search', $request->search),
+        ]);
+    }
+    public function worker_form_edit(Worker $user)
+    {
+        return view('forms/trabajador', [
+            'user' => $user,
+        ]);
+    }
+    public function worker_create(Request $request)
+    {
+        $user = new Worker();
+        $user->fill($request->all());
+        // does not contain password
+        $user->toUpperCase();
+        $user->save();
+        return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+    }
+    public function worker_edit(Request $request, Worker $user)
+    {
+        $input = $request->all();
+        $user->fill($input)->save();
+        return back()->with('message', 'Se actualizó el registro con éxito!')->with('alert-class', 'alert-success');
     }
 
     // passwords

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Student extends Authenticatable
+class Worker extends Authenticatable
 {
     use HasFactory;
     use SoftDeletes;
@@ -19,23 +19,25 @@ class Student extends Authenticatable
     protected $fillable = [
         'nombre',
         'apellido',
-        'clave',
         'telefono',
         'correo',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'clave',
+        'cargo',
+        'turno',
+        'cedula',
+        'sexo',
+        'direccion',
+        'fecha_nacimiento',
+        'fecha_ingreso',
     ];
 
     public function nombreCompleto()
     {
         return $this->nombre . ' ' . $this->apellido;
+    }
+
+    public function cedulaCompleto()
+    {
+        return 'V' . $this->cedula;
     }
 
     public function toUpperCase()

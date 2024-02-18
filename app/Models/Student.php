@@ -29,6 +29,7 @@ class Student extends Authenticatable
         'direccion',
         'extranjero',
         'cedula',
+        'sexo',
         'tipo_educacion',
     ];
 

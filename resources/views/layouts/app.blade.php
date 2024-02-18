@@ -57,6 +57,13 @@
                     </li>
                     @endif
 
+                    @if (Session::get('auth_user')->superuser)
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('workers') ? 'active' : '' }}"
+                            href="{{ route('workers') }}">Trabajadores</a>
+                    </li>
+                    @endif
+
                     <li class="nav-item">
                         <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}"
                             href="{{ route('notifications') }}">Anuncios</a>

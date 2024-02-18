@@ -1,25 +1,12 @@
 <x-app-layout>
-    <h4 class="mt-3 mb-4">Estudiantes</h4>
+    <h4 class="mt-3 mb-4">Trabajadores</h4>
     <div class="row">
-        <form method="get" action="{{ route('students') }}" class="row col-sm justify-content-between">
+        <form method="get" action="{{ route('workers') }}" class="row col-sm justify-content-between">
             <div class="col-sm-6">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Buscar" aria-label="Buscar"
                         value="{{ Request::query('search') }}">
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <select class="form-select" name="nivel_educacion">
-                    <option {{ Request::query('nivel_educacion') != null ? '' : 'selected' }} value=''>Nivel
-                        Educativo</option>
-                    @foreach (['GRADO', 'NIVEL'] as $grado)
-                        @for ($i = 1; $i <= ($grado == 'NIVEL' ? 3 : 6); $i++)
-                            <option {{ Request::query('nivel_educacion') == $i . 'º ' . $grado ? 'selected' : '' }}
-                                value="{{ $i }}º {{ $grado }}">{{ $i }}º
-                                {{ $grado }}</option>
-                        @endfor
-                    @endforeach
-                </select>
             </div>
             <button type="submit" class="btn btn-primary col-sm-2" data-toggle="tooltip" data-placement="top"
                                 title="Buscar">
@@ -36,7 +23,8 @@
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Teléfono</th>
-                    <th>Curso Actual</th>
+                    <th>Cargo</th>
+                    <th>Turno</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -47,9 +35,10 @@
                         <td>{{ $user->nombre }}</td>
                         <td>{{ $user->apellido }}</td>
                         <td>{{ $user->telefono }}</td>
-                        <td>{{ $user->nivel_educacion }}</td>
+                        <td>{{ $user->cargo }}</td>
+                        <td>{{ $user->turno }}</td>
                         <td>
-                            <a role="button" href="{{ route('students.form.edit', $user->id) }}"
+                            <a role="button" href="{{ route('workers.form.edit', $user->id) }}"
                                 class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top"
                                 title="Editar"><i class="fas fa-edit"></i></a>
 

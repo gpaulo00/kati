@@ -33,6 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/students', [AppController::class, 'student_table'])->name('students');
     Route::get('/students/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
 
+    Route::get('/workers', [AppController::class, 'worker_table'])->name('workers');
+    Route::post('/worker/edit/{user}', [AppController::class, 'worker_edit'])->name('worker.edit');
+    Route::post('/worker/create', [AppController::class, 'worker_create'])->name('worker.create');
+    Route::get('/workers/{user}', [AppController::class, 'worker_form_edit'])->name('workers.form.edit');
+
     Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
     Route::post('/notifications/edit/{notif}', [AppController::class, 'notif_edit'])->name('notifications.edit');
     Route::post('/notifications/delete/{notif}', [AppController::class, 'notif_delete'])->name('notifications.delete');
