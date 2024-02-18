@@ -20,10 +20,10 @@
     text-decoration: underline;
     /*border-bottom: 1px solid;*/
 }
-.gp-sub:after {
+.gp-sub2:after {
     content: "\00a0\00a0";
 }
-.gp-sub:before {
+.gp-sub2:before {
     content: "\00a0\00a0";
 }
 
@@ -46,19 +46,19 @@ p.gp-first {
     <p class="gp-first">
         Quien suscribe Lcdo. Leonardo Escalona, Director (E) del <b>{{ config('app.community_name', 'Laravel') }}</b>,
         con número de RIF J-40912864-4, ubicado en la calle 30, entre Avenidas 21 y Rómulo Gallegos del Barrio Campo Lindo de la Ciudad de Acarigua
-        Edo. Portuguesa, por medio de la presente se hace constar que el (la) ciudadano
-        <span class="gp-sub">{{ $user->nombre . ' ' . $user->apellido ?? '{Nombre Completo}'}}&nbsp;</span>
-        titular de la Cédula de Identidad Nº <span class="gp-sub">{{ ' ' . $user->cedula . ' ' ?? '{Cedula}' }}</span>
-        ha sido inscrito (a) en esta institucion, para cursar el <span class="gp-sub">{{ $user->nivel_educacion ?? '{Grado}' }}</span> de Educación:
-        <span class="gp-sub">{{ $user->tipo_educacion ?? '{Educacion}' }}</span>
-        durante el Año Escolar: <span class="gp-sub">{{ $fecha->year }}-{{ $fecha->year + 1 }}</span>
+        Edo. Portuguesa, por medio de la presente se hace constar que {{ $user->sexo ? 'la ciudadana' : 'el ciudadano' }}:
+        <span class="gp-sub gp-sub2">{{ $user->nombre . ' ' . $user->apellido ?? '{Nombre Completo}'}}&nbsp;</span>
+        titular de la Cédula de Identidad Nº <span class="gp-sub gp-sub2">{{ ' ' . $user->cedulaCompleto() . ' ' ?? '{Cedula}' }}</span>
+        labora en esta institución como <span class="gp-sub gp-sub2">{{ ' ' . $user->cargo . ' ' ?? '{Cargo}' }}</span>
+        en el Nivel Media General, con una carga horaria de 40 horas semanales, en el turno {{ $user->turno }}
+        de lunes a viernes en el horario comprendido de {{ $user->horario() }}.
     </p>
 
     <br><br><br>
 
     <p class="gp-first">
-        Constancia que se expide a solicitud de parte interesada en Acarigua a los <span class="gp-sub">{{ $fecha->day }}</span> días del mes de
-        <span class="gp-sub">{{ $fecha->monthName }}</span> del <span class="gp-sub">{{ $fecha->year }}</span>.
+        Constancia que se realiza en la ciudad de Acarigua a solicitud de la parte interesada a los <span class="gp-sub">{{ $fecha->day }}</span> días del mes de
+        <span class="gp-sub gp-sub2">{{ $fecha->monthName }}</span> del <span class="gp-sub gp-sub2">{{ $fecha->year }}</span>.
     </p>
 
     <br><br><br>

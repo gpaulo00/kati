@@ -42,12 +42,9 @@
                                 class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top"
                                 title="Editar"><i class="fas fa-edit"></i></a>
 
-                            <a role="button" href="{{ route('reports.inscripcion', ['id' => $user->id]) }}"
+                            <a role="button" href="{{ route('reports.trabajo', ['id' => $user->id]) }}"
                                 target="_blank" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-                                title="Constancia de Inscripción"><i class="fas fa-file-pdf"></i></a>
-                            <a role="button" href="{{ route('reports.estudios', ['id' => $user->id]) }}"
-                                target="_blank" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-                                title="Constancia de Estudios"><i class="fas fa-file-pdf"></i></a>
+                                title="Constancia de Trabajo"><i class="fas fa-file-pdf"></i></a>
                         </td>
                     </tr>
                 @endforeach

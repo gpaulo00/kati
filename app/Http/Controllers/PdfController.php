@@ -30,4 +30,15 @@ class PdfController extends Controller
         //->month;
         return $pdf->stream("constancia_estudios.pdf", array("Attachment" => false));
     }
+
+    public function constancia_trabajo()
+    {
+        Carbon::setLocale('es');
+        $date = Carbon::now();
+        $pdf = Pdf::loadView('reports/constancia_trabajo', [
+            'fecha' => $date,
+        ]);
+        //->month;
+        return $pdf->stream("constancia_trabajo.pdf", array("Attachment" => false));
+    }
 }

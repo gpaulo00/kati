@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion'])->name('reports.inscripcion');
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');
+    Route::get('/reports/constancia_trabajo.pdf', [PdfController::class, 'constancia_trabajo'])->name('reports.trabajo');
 });
 
 /*
