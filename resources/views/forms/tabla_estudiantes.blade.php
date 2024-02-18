@@ -2,7 +2,7 @@
     <h4 class="mt-3 mb-4">Estudiantes</h4>
     <div class="row">
         <form method="get" action="{{ route('students') }}" class="row col-sm justify-content-between">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Buscar" aria-label="Buscar"
                         value="{{ Request::query('search') }}">
@@ -21,11 +21,15 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary col-sm-2" data-toggle="tooltip" data-placement="top"
+            <button type="submit" class="btn btn-primary col-sm-1" data-toggle="tooltip" data-placement="top"
                                 title="Buscar">
-                Buscar &nbsp;
                 <i class="fas fa-search"></i>
             </button>
+            <a href="{{ route('students.form.create') }}" class="btn btn-success col-sm-2" data-toggle="tooltip" data-placement="top"
+                                title="Agregar Estudiante">
+                Agregar &nbsp;
+                <i class="fas fa-plus"></i>
+            </a>
         </form>
     </div>
     <div class="row mt-4">

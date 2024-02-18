@@ -31,12 +31,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/student/edit/{user}', [AppController::class, 'student_edit'])->name('student.edit');
     Route::post('/student/create', [AppController::class, 'student_create'])->name('student.create');
     Route::get('/students', [AppController::class, 'student_table'])->name('students');
-    Route::get('/students/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
+    Route::get('/students/modify/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
+    Route::get('/students/create', [AppController::class, 'student_form_create'])->name('students.form.create');
 
     Route::get('/workers', [AppController::class, 'worker_table'])->name('workers');
     Route::post('/worker/edit/{user}', [AppController::class, 'worker_edit'])->name('worker.edit');
     Route::post('/worker/create', [AppController::class, 'worker_create'])->name('worker.create');
-    Route::get('/workers/{user}', [AppController::class, 'worker_form_edit'])->name('workers.form.edit');
+    Route::get('/workers/modify/{user}', [AppController::class, 'worker_form_edit'])->name('workers.form.edit');
+    Route::get('/workers/create', [AppController::class, 'worker_form_create'])->name('workers.form.create');
 
     Route::get('/notifications', [AppController::class, 'notifications'])->name('notifications');
     Route::post('/notifications/edit/{notif}', [AppController::class, 'notif_edit'])->name('notifications.edit');

@@ -153,6 +153,25 @@
                 </div>
             </div>
 
+            <div class="col-md-3">
+                <div class="input-group has-validation">
+                    <div class="form-floating"
+                        :class="{
+                            'form-floating': true,
+                            'col-sm-12': true,
+                            'is-valid': processed,
+                        }">
+                        <input type="hidden" name="sexo" :value="sexo === 'F' ? 1 : 0">
+                        <select required x-model="sexo" id="st_sexo" class="form-select"
+                            :class="{ 'form-select': true, 'is-valid': processed }">
+                            <option selected value='M'>Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                        <label for="st_sexo">Sexo</label>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-8">
                 <div class="input-group has-validation">
                     <div class="form-floating col-sm-12">
@@ -246,6 +265,7 @@
             Alpine.data('estudiante', () => ({
                 errors: {},
                 nacionalidad: '{{ isset($user) && $user->extranjero ? 'E' : 'V' }}',
+                sexo: '{{ isset($user) && $user->sexo ? 'F' : 'M' }}',
                 correo: @json($user->correo ?? null),
                 nombre: @json($user->nombre ?? null),
                 apellido: @json($user->apellido ?? null),

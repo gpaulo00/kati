@@ -51,5 +51,6 @@ class Worker extends Authenticatable
     {
         $this->nombre = strtoupper($this->nombre);
         $this->apellido = strtoupper($this->apellido);
+        $this->cargo = strtoupper($this->cargo);
     }
 }

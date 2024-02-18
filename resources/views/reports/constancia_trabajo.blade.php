@@ -40,6 +40,10 @@ p.gp-first {
     @php
         $user = \App\Models\Worker::find(\Request::get('id'));
     @endphp
+    <!--
+    <img width="750px" src="{{ asset('membrete.png') }}">
+    <br><br>
+    -->
 
     <h1 class="gp-title">CONSTANCIA DE TRABAJO</h1>
     <br><br>

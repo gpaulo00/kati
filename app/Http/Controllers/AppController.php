@@ -85,6 +85,10 @@ class AppController extends Controller
             'users' => $data->paginate(5)->appends('search', $request->search),
         ]);
     }
+    public function student_form_create()
+    {
+        return view('forms/estudiante', []);
+    }
     public function student_form_edit(Student $user)
     {
         return view('forms/estudiante', [
@@ -111,6 +115,10 @@ class AppController extends Controller
         return view('forms/tabla_trabajadores', [
             'users' => $data->paginate(5)->appends('search', $request->search),
         ]);
+    }
+    public function worker_form_create()
+    {
+        return view('forms/trabajador', []);
     }
     public function worker_form_edit(Worker $user)
     {
