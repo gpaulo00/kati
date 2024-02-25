@@ -4,7 +4,11 @@
 	    margin: 0;
 	    padding: 0;
 	    height: 100%;
-	    background: #60a3bc !important;
+	    background-image: url("./images/fachada1.jpg");
+		background-size: cover;
+		background-repeat:no-repeat;
+		background-position: center center;
+ 		background-color: #cccccc;
 	}
 
 	.user_card {
