@@ -43,6 +43,8 @@ p.gp-first {
             $user = \App\Models\Student::find(Session::get('auth_user')->id);
         }
     @endphp
+    <img width="750px" src="{{ asset('membrete.png') }}">
+    <br><br>
 
     <h1 class="gp-title">CONSTANCIA DE ESTUDIOS</h1>
     <br><br><br>
