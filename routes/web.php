@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [AppController::class, 'profile'])->name('profile');
     Route::post('/student/edit/{user}', [AppController::class, 'student_edit'])->name('student.edit');
     Route::post('/student/create', [AppController::class, 'student_create'])->name('student.create');
-    Route::get('/students', [AppController::class, 'student_table'])->name('students');
+    Route::get('/students', [AppController::class, 'student_searcher'])->name('students');
+    Route::get('/students/search', [AppController::class, 'student_form_edit2'])->name('students.search');
     Route::get('/students/modify/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
     Route::get('/students/create', [AppController::class, 'student_form_create'])->name('students.form.create');
 
@@ -58,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion'])->name('reports.inscripcion');
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');
     Route::get('/reports/constancia_trabajo.pdf', [PdfController::class, 'constancia_trabajo'])->name('reports.trabajo');
+    Route::get('/reports/constancia_retiro.pdf', [PdfController::class, 'constancia_retiro'])->name('reports.retiro');
 });
 
 /*
