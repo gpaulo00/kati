@@ -61,7 +61,7 @@ p.gp-first {
     <br><br><br>
 
     <p class="gp-first">
-        Constancia que se realiza en la ciudad de Acarigua a solicitud de la parte interesada a los <span class="gp-sub">{{ $fecha->day }}</span> días del mes de
+        Constancia que se realiza en la ciudad de Acarigua a solicitud de la parte interesada a los <span class="gp-sub gp-sub2">{{ $fecha->day }}</span> días del mes de
         <span class="gp-sub gp-sub2">{{ $fecha->monthName }}</span> del <span class="gp-sub gp-sub2">{{ $fecha->year }}</span>.
     </p>
 

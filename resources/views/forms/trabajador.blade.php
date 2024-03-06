@@ -224,6 +224,11 @@
             </div>
 
             <div>
+                @if(isset($user))
+                    <a role="button" href="{{ route('reports.trabajo', ['id' => $user->id]) }}"
+                                    target="_blank" class="btn btn-info" data-toggle="tooltip" data-placement="top"
+                                    title="Constancia de Trabajo">Constancia de Trabajo &nbsp;<i class="fas fa-file-pdf"></i></a>
+                @endif
                 <a role="button" href="{{ route('workers') }}" class="btn btn-secondary">Volver</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
