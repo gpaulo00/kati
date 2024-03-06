@@ -12,7 +12,7 @@
                 <select class="form-select" name="nivel_educacion">
                     <option {{ Request::query('nivel_educacion') != null ? '' : 'selected' }} value=''>Nivel
                         Educativo</option>
-                    @foreach (['GRADO', 'NIVEL'] as $grado)
+                    @foreach (['GRADO'] as $grado)
                         @for ($i = 1; $i <= ($grado == 'NIVEL' ? 3 : 6); $i++)
                             <option {{ Request::query('nivel_educacion') == $i . 'º ' . $grado ? 'selected' : '' }}
                                 value="{{ $i }}º {{ $grado }}">{{ $i }}º

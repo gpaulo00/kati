@@ -64,11 +64,6 @@
                     </li>
                     @endif
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ Route::is('notifications') ? 'active' : '' }}"
-                            href="{{ route('notifications') }}">Anuncios</a>
-                    </li>
-
                     @if (!Session::get('auth_user')->superuser)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
