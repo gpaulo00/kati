@@ -189,8 +189,6 @@
                         <select required x-model="educacion" id="st_tipo_educacion" name="tipo_educacion"
                             :class="{ 'form-select': true, 'is-valid': processed }" class="form-select">
                             <option selected value='PRIMARIA'>PRIMARIA</option>
-                            <option value="INICIAL">INICIAL</option>
-                            <option value="BACHILLERATO">BACHILLERATO</option>
                         </select>
                         <label for="st_tipo_educacion">Tipo Educación</label>
                     </div>
