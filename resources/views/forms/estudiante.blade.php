@@ -342,7 +342,7 @@
                 getPlanillaLink() {
                     let link = this.availables[this.planilla][1];
                     if (this.planilla === '2') {
-                        link += `&motivo=${encodeURI(motivoRetiro)}&representante=${encodeURI(representante)}&ci=${encodeURI(representanteCi)}`;
+                        link += `&motivo=${encodeURI(this.motivoRetiro)}&representante=${encodeURI(this.representante)}&ci=${encodeURI(this.representanteCi)}`;
                     }
                     return link;
                 },
