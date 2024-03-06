@@ -1,10 +1,21 @@
 <x-app-layout>
     <h4 class="mt-3 mb-4">Buscar Estudiante</h4>
     <div class="row mb-4">
+        @if (Session::has('message'))
+            <div class="row justify-content-center">
+                <div class="mt-3 mb-3 col-sm-5 alert alert-dismissible {{ Session::get('alert-class', 'alert-info') }}"
+                    role="alert">
+                    <div>{{ Session::get('message') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            </div>
+        @endif
+
         <form method="get" action="{{ route('students.search') }}" class="row col-sm justify-content-center pt-4">
             <div class="col-sm-5">
                 <div class="input-group">
                     <input type="text"
+                        required
                         class="form-control"
                         name="cedula"
                         placeholder="Cédula de Identidad">

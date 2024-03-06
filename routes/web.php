@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');
     Route::get('/reports/constancia_trabajo.pdf', [PdfController::class, 'constancia_trabajo'])->name('reports.trabajo');
     Route::get('/reports/constancia_retiro.pdf', [PdfController::class, 'constancia_retiro'])->name('reports.retiro');
+    Route::get('/reports/constancia_prosecucion.pdf', [PdfController::class, 'constancia_prosecucion'])->name('reports.prosecucion');
 });
 
 /*

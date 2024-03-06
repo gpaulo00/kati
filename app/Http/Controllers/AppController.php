@@ -103,6 +103,9 @@ class AppController extends Controller
     {
         $user = $request->query('cedula');
         $student = Student::where('cedula', $user)->first();
+        if (!$student) {
+            return back()->with('message', 'El estudiante no está registrado')->with('alert-class', 'alert-danger');
+        }
         return view('forms/estudiante', [
             'user' => $student,
         ]);

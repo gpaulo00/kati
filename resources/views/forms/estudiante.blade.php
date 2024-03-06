@@ -332,6 +332,7 @@
                     ["Constancia de Inscripción", route('reports.inscripcion', ['id' => $user->id])],
                     ["Constancia de Estudios", route('reports.estudios', ['id' => $user->id])],
                     ["Constancia de Retiro", route('reports.retiro', ['id' => $user->id])],
+                    ["Constancia de Prosecución", route('reports.prosecucion', ['id' => $user->id])]
                 ] : []) !!},
                 planilla: '0',
                 motivoRetiro: null,

@@ -52,4 +52,14 @@ class PdfController extends Controller
         ]);
         return $pdf->stream("constancia_retiro.pdf", array("Attachment" => false));
     }
+
+    public function constancia_prosecucion(Request $request)
+    {
+        Carbon::setLocale('es');
+        $date = Carbon::now();
+        $pdf = Pdf::loadView('reports/constancia_prosecucion', [
+            'fecha' => $date,
+        ]);
+        return $pdf->stream("constancia_prosecucion.pdf", array("Attachment" => false));
+    }
 }
