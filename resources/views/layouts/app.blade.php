@@ -90,6 +90,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item {{ Route::is('mision') ? 'active' : '' }}" href="{{ route('mision') }}">Mision</a></li>
                             <li><a class="dropdown-item {{ Route::is('vision') ? 'active' : '' }}" href="{{ route('vision') }}">Visión</a></li>
+                            <li><a class="dropdown-item {{ Route::is('resena_historica') ? 'active' : '' }}" href="{{ route('resena_historica') }}">Reseña Histórica</a></li>
                         </ul>
                     </li>
                     @endif

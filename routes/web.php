@@ -56,6 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/vision', function () {
         return view('vision');
     })->name('vision');
+    Route::get('/resena_historica', function () {
+        return view('resena_historica');
+    })->name('resena_historica');
 
     Route::get('/reports/constancia_inscripcion.pdf', [PdfController::class, 'constancia_inscripcion'])->name('reports.inscripcion');
     Route::get('/reports/constancia_estudios.pdf', [PdfController::class, 'constancia_estudios'])->name('reports.estudios');
