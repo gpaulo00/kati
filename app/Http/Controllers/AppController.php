@@ -95,6 +95,18 @@ class AppController extends Controller
             'user' => $user,
         ]);
     }
+    public function student_searcher()
+    {
+        return view('forms/buscar_estudiante', []);
+    }
+    public function student_form_edit2(Request $request)
+    {
+        $user = $request->query('cedula');
+        $student = Student::where('cedula', $user)->first();
+        return view('forms/estudiante', [
+            'user' => $student,
+        ]);
+    }
 
     // workens
     public function worker_table(Request $request)
