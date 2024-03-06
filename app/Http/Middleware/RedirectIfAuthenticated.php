@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         $auth = $request->session()->get('auth');
         if ($auth) {
-            return redirect()->route('profile');
+            return redirect()->route('students');
         }
 
         return $next($request);
