@@ -35,9 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/students/modify/{user}', [AppController::class, 'student_form_edit'])->name('students.form.edit');
     Route::get('/students/create', [AppController::class, 'student_form_create'])->name('students.form.create');
 
-    Route::get('/workers', [AppController::class, 'worker_table'])->name('workers');
+    Route::get('/workers', [AppController::class, 'worker_searcher'])->name('workers');
     Route::post('/worker/edit/{user}', [AppController::class, 'worker_edit'])->name('worker.edit');
     Route::post('/worker/create', [AppController::class, 'worker_create'])->name('worker.create');
+    Route::get('/workers/search', [AppController::class, 'worker_form_edit2'])->name('workers.search');
     Route::get('/workers/modify/{user}', [AppController::class, 'worker_form_edit'])->name('workers.form.edit');
     Route::get('/workers/create', [AppController::class, 'worker_form_create'])->name('workers.form.create');
 

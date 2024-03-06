@@ -156,6 +156,21 @@ class AppController extends Controller
         $user->fill($input)->save();
         return back()->with('message', 'Se actualizó el registro con éxito!')->with('alert-class', 'alert-success');
     }
+    public function worker_searcher()
+    {
+        return view('forms/buscar_trabajador', []);
+    }
+    public function worker_form_edit2(Request $request)
+    {
+        $user = $request->query('cedula');
+        $worker = Worker::where('cedula', $user)->first();
+        if (!$worker) {
+            return back()->with('message', 'El trabajador no está registrado')->with('alert-class', 'alert-danger');
+        }
+        return view('forms/trabajador', [
+            'user' => $worker,
+        ]);
+    }
 
     // passwords
     public function password(Request $request)
