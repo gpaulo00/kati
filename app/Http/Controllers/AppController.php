@@ -53,7 +53,8 @@ class AppController extends Controller
         $user->clave = password_hash($user->clave, PASSWORD_BCRYPT);
         $user->toUpperCase();
         $user->save();
-        return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+        return redirect()->route('students.form.edit', ["user" => $user->id])
+            ->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
     }
     public function student_edit(Request $request, Student $user)
     {
@@ -148,7 +149,8 @@ class AppController extends Controller
         // does not contain password
         $user->toUpperCase();
         $user->save();
-        return back()->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
+        return redirect()->route('workers.form.edit', ["user" => $user->id])
+            ->with('message', 'Se creó el registro con éxito!')->with('alert-class', 'alert-success');
     }
     public function worker_edit(Request $request, Worker $user)
     {
