@@ -124,11 +124,21 @@
 
             <div class="col-md-3">
                 <div class="input-group has-validation">
-                    <div class="form-floating col-sm-12">
-                        <input x-mask="(9999) 9999999" value="{{ $user->telefono ?? '' }}" name="telefono" type="text" class="form-control"
-                            :class="{ 'form-control': true, 'is-valid': processed }" id="st_telefono">
-                        <label for="st_telefono">Teléfono</label>
+                    <div class="form-floating col-sm-12"
+                        :class="{
+                            'form-floating': true,
+                            'col-sm-12': true,
+                            'is-invalid': processed && errors.telefono,
+                        }">
+                        <input x-mask="(9999) 9999999" x-model="telefono" name="telefono" type="text" class="form-control"
+                            :class="{
+                                'form-control': true,
+                                'is-valid': processed && !errors.telefono,
+                                'is-invalid': processed && errors.telefono,
+                            }" id="st_telefono">
+                        <label for="st_telefono" class="form-label">Teléfono</label>
                     </div>
+                    <div class="invalid-feedback" x-text="errors.telefono"></div>
                 </div>
             </div>
 
@@ -310,6 +320,11 @@
             return re.test(email);
         }
 
+        function validatePhone(email) {
+            var re2 = /^\((02\d\d|0414|0424|0412|0416|0426)\) [0-9]{7}$/;
+            return re2.test(email);
+        }
+
         function creditCardMask(input) {
             return '9'.repeat(input.length < 10 ? input.length + 1 : 10)
         }
@@ -323,6 +338,7 @@
                 nombre: @json($user->nombre ?? null),
                 apellido: @json($user->apellido ?? null),
                 cedula: @json($user->cedula ?? null),
+                telefono: @json($user->telefono ?? null),
                 fecha_nacimiento: @json($user->fecha_nacimiento ?? null),
                 educacion: @json($user->tipo_educacion ?? 'PRIMARIA'),
                 nivel: @json(isset($user) && !is_null($user->nivel_educacion) ? (int)$user->nivel_educacion : 1),
@@ -365,6 +381,18 @@
                     }
                     if (!this.fecha_inscripcion) {
                         this.errors.fecha_inscripcion = 'Este campo es obligatorio';
+                    }
+                    const fecha_max = moment().add(-4, 'year') // fecha actual - 4 años = 2020
+                    const fecha_min = moment().add(-20, 'year') // fecha actual - 20 años = 2004
+                    if (this.fecha_nacimiento && moment(this.fecha_nacimiento).isAfter(fecha_max)) {
+                        this.errors.fecha_nacimiento = 'Fecha inválida';
+                    }
+                    if (this.fecha_nacimiento && moment(this.fecha_nacimiento).isBefore(fecha_min)) {
+                        this.errors.fecha_nacimiento = 'Fecha inválida';
+                    }
+
+                    if (this.telefono && !validatePhone(this.telefono)) {
+                        this.errors.telefono = 'No es un teléfono válido';
                     }
 
                     if (!this.correo) {
