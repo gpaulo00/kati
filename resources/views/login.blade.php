@@ -87,6 +87,7 @@
                                             required
                                             x-mask:dynamic="creditCardMask"
                                             minlength="4"
+                                            autocomplete="off"
                                             type="text" name="username" class="form-control input_user"
                                             value="{{ $user ?? '' }}"
                                             placeholder="C.I."

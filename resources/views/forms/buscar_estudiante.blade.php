@@ -17,12 +17,13 @@
                     <input type="text"
                         required
                         class="form-control"
+                        autocomplete="off"
                         name="cedula"
                         placeholder="Cédula de Identidad">
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <button type="submit" class="btn btn-primary mr-2" data-toggle="tooltip" data-placement="top"
                                     title="Buscar">
                     Buscar &nbsp;   
