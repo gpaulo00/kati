@@ -97,8 +97,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 
 ## Credits
 
-Developed by [Your Name] as part of a professional portfolio. Based on the Laravel framework.
-
----
-
-Would you like to personalize this README with your name, links, or additional instructions? Feel free to let me know!
+Developed by Gustavo Paulo as part of a professional portfolio. Based on the Laravel framework.
